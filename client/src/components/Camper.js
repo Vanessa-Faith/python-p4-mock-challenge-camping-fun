@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import NewSignup from "./NewSignup";
+import API_BASE_URL from "../config";
 
 function Camper() {
   const [{ data: camper, error, status }, setCamper] = useState({
@@ -11,7 +12,7 @@ function Camper() {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`/campers/${id}`).then((r) => {
+    fetch(`${API_BASE_URL}/campers/${id}`).then((r) => {
       if (r.ok) {
         r.json().then((camper) =>
           setCamper({ data: camper, error: null, status: "resolved" })

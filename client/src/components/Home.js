@@ -1,19 +1,20 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import NewCamper from "./NewCamper";
+import API_BASE_URL from "../config";
 
 function Home() {
   const [campers, setCampers] = useState([]);
   const [activities, setActivities] = useState([]);
 
   useEffect(() => {
-    fetch("/activities")
+    fetch(`${API_BASE_URL}/activities`)
       .then((r) => r.json())
       .then(setActivities);
   }, []);
 
   useEffect(() => {
-    fetch("/campers")
+    fetch(`${API_BASE_URL}/campers`)
       .then((r) => r.json())
       .then(setCampers);
   }, []);
@@ -23,7 +24,7 @@ function Home() {
   }
 
   function handleDeleteActivity(id) {
-    fetch(`/activities/${id}`, {
+    fetch(`${API_BASE_URL}/activities/${id}`, {
       method: "DELETE",
     }).then((r) => {
       if (r.ok) {

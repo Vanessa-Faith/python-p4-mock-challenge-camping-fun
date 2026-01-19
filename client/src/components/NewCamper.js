@@ -1,4 +1,5 @@
 import { useState } from "react";
+import API_BASE_URL from "../config";
 
 function NewCamper({ onAddCamper }) {
   const [name, setName] = useState("");
@@ -11,7 +12,7 @@ function NewCamper({ onAddCamper }) {
       name,
       age: Number(age),
     };
-    fetch("/campers", {
+    fetch(`${API_BASE_URL}/campers`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
